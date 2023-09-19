@@ -1,3 +1,5 @@
+#!/usr/bin/python3                                      """Console TestCases """
+
 import unittest
 import sys
 from io import StringIO
@@ -25,26 +27,26 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_create(self):
         console = HBNBCommand()
-        
+
         # Test create command for BaseModel
         console.onecmd("create BaseModel name=\"Test Model\" number_rooms=3")
         captured_output = self.held_output.getvalue().strip()
         self.assertTrue(captured_output.startswith("[BaseModel]"))
-        
+
         # Test create command for User
-        console.onecmd("create User email=\"test@example.com\" password=\"password\"")
+        console.onecmd("create User email=\"test@ele.com\" password=\"pwd\"")
         captured_output = self.held_output.getvalue().strip()
         self.assertTrue(captured_output.startswith("[User]"))
 
     def test_show(self):
         console = HBNBCommand()
-        
+
         # Test show command for existing object
         console.onecmd("create BaseModel name=\"Test Model\"")
         console.onecmd("show BaseModel " + console.id)
         captured_output = self.held_output.getvalue().strip()
         self.assertTrue(captured_output.startswith("[BaseModel]"))
-        
+
         # Test show command for non-existing object
         console.onecmd("show BaseModel non_existent_id")
         captured_output = self.held_output.getvalue().strip()
@@ -52,20 +54,18 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_destroy(self):
         console = HBNBCommand()
-        
+
         # Test destroy command for existing object
         console.onecmd("create BaseModel name=\"Test Model\"")
         console.onecmd("destroy BaseModel " + console.id)
         captured_output = self.held_output.getvalue().strip()
         self.assertEqual(captured_output, "")
-        
+
         # Test destroy command for non-existing object
         console.onecmd("destroy BaseModel non_existent_id")
         captured_output = self.held_output.getvalue().strip()
         self.assertEqual(captured_output, "** no instance found **")
 
-    
 
 if __name__ == '__main__':
     unittest.main()
-
