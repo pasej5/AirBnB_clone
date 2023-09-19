@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """This module defines a class User"""
-
-
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
+
 
 class User(BaseModel, Base):
     """
@@ -11,21 +10,17 @@ class User(BaseModel, Base):
     the database.
 
     Attributes:
-        __tablename__ (str): this attributes represents
-        the table name, "users".
-        email (str): attribute represents a column
-        containing a string (128 characters).Attribute
-        can't be null.
-        password (str): attribute represents a column
-        containing a string (128 characters).Attribute can't be null.
-        first_name (str): attribute represents a column
-        containing a string (128 characters). Attribute can be null.
-        last_name (str): attribute represents a column
-        containing a string (128 characters).Attribute can be null.
+        __tablename__ : this represents "users".
+        email : This represents a column (128 char), cant be null
+        password : This represnts a column (128), cant be null
+        first_name : This reprents a Column (128 char)
+        can be null
+        last_name : This represnts a column (128 char)
+        can be null
 
     Args:
-        BaseModel (class): the BaseModel class.
-        Base (class): the declarative Base class from SQLAlchemy.
+        BaseModel : the Basemodel class
+        Base : declarative class
     """
     __tablename__ = 'users'
 
