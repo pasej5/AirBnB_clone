@@ -1,4 +1,5 @@
-#!/usr/bin/python3                                      """Console TestCases """
+#!/usr/bin/python3 
+"""Console TestCases """
 
 import unittest
 import sys
