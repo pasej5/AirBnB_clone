@@ -5,6 +5,7 @@ from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import BaseModel, Base
+from models import base_model, user, state, city, amenity, place, review
 
 
 class DBStorage:
@@ -22,7 +23,7 @@ class DBStorage:
         environment = getenv("HBNB_ENV")
         connection_url = f"mysql+mysql://{db_user}:{db_pwd}@{db_host}/db"
 
-        self._engine = create_engine(connection_url, pool_pre_ping=True)
+        self.__engine = create_engine(connection_url, pool_pre_ping=True)
 
         if environment == 'test':
             metadata.drop_all(bind=self._engine)
