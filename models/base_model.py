@@ -44,6 +44,11 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
 
+            del kwargs['__class__']
+            if '_sa_instance_state' in kwargs.keys():
+                del kwargs['_sa_instance_state']
+            self.__dict__.update(kwargs)
+
     def __str__(self):
         """returns a string
         Return:
