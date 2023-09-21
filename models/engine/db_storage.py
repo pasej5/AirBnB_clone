@@ -28,7 +28,8 @@ class DBStorage:
 
     def all(self, cls=None):
         """Query all objects depending on class name"""
-        from models import base_model, user, state, city, amenity, place, review
+        from models import base_model, user, state
+        from models import city, amenity, place, review
 
         session = self.__session
         objects = {}
@@ -63,5 +64,6 @@ class DBStorage:
     def reload(self):
         """Create all tables and create a session"""
         Base.metadata.create_all(self.__engine)
-        self.__session = scoped_session(sessionmaker(bind=self.__engine,
-                                                      expire_on_commit=False))
+        self.__session = scoped_session(sessionmaker(
+            bind=self.__engine, expire_on_commit=False
+            ))
