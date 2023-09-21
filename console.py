@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
                 value = value[1:-1]
 
             # Replace underscores with spaces in the key
-            key = key.replace('_', ' ')
+            value = value.replace('_', ' ')
 
             # Try to convert the value to its appropriate data type
             try:
@@ -249,11 +249,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.al()l.items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)
