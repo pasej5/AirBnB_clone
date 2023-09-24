@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             # if parantheses contain arguments, parse them
             pline = pline[pline.find('(') + 1:pline.find(')')]
             if pline:
-            # isolate _id, stripping quotes
+                # isolate _id, stripping quotes
                 _id = pline.partition(',')[0].strip().replace('"', '')
 
                 # check for *args or **kwargs
@@ -126,8 +126,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        # Initialize a dictionary with default 'created_at' and 'updated_at' values
-        params = {'created_at': datetime.now().isoformat(), 'updated_at': datetime.now().isoformat()}
+        # Initialize dict with default 'created_at' and 'updated_at' values
+        params = {'created_at': datetime.now().isoformat(),
+                  'updated_at': datetime.now().isoformat()}
 
         # Parse the parameters and extract key-value pairs
         for param in args[1:]:
@@ -315,7 +316,7 @@ class HBNBCommand(cmd.Cmd):
                 args.append(v)
         else:  # isolate args
             args = args[2]
-            if args and args[0] == '\"': # check for quoted arg
+            if args and args[0] == '\"':    # check for quoted arg
                 second_quote = args.find('\"', 1)
                 att_name = args[1:second_quote]
                 args = args[second_quote + 1:]
@@ -362,6 +363,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

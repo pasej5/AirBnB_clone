@@ -34,6 +34,10 @@ class BaseModel:
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
+
+            # Remove __class__ from kwargs
+            kwargs.pop('__class__', None)
+
             if "id" not in kwargs:
                 self.id = str(uuid.uuid4())
             if "created_at" not in kwargs:
@@ -44,7 +48,8 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
 
-            del kwargs['__class__']
+            if '__class__' in kwargs:
+                del kwargs['__class__']
             if '_sa_instance_state' in kwargs.keys():
                 del kwargs['_sa_instance_state']
             self.__dict__.update(kwargs)
