@@ -1,22 +1,21 @@
 #!/usr/bin/python3
-from fabric.api import run, env, put, local, runs_once
+from fabric.api import local, env, put, run
 from os.path import exists
 from datetime import datetime
 
-env.hosts = ['<IP 100.26.236.53>', '<IP 107.22.144.34>']
-env.user = '<devmat>'
-env.key_filename = '<~/.ssh/id_rsa>'
+env.hosts = ['<IP web-01>', '<IP web-02>']
+env.user = '<your_username>'  # Replace with your SSH username
+env.key_filename = '<path_to_your_private_key>'  # Replace with the path to your SSH private key
 
-@runs_once
 def do_pack():
     """
-    Archives the static files.
+    Archives the static files locally.
 
     Returns:
         str or None: Path to the created archive or None if archiving fails.
     """
-    if not os.path.isdir("versions"):
-        os.mkdir("versions")
+    if not exists("versions"):
+        local("mkdir -p versions")
     d_time = datetime.now()
     output = "versions/web_static_{}{}{}{}{}{}.tgz".format(
         d_time.year,
