@@ -6,7 +6,7 @@ Fabric script to clean out-of-date archives.
 from fabric.api import run, local, env
 import os
 
-env.hosts = ['<IP web-01>', '<IP web-02>']
+env.hosts = ['IP 100.26.236.53', 'IP 107.22.144.34']
 
 def do_clean(number=0):
     """
