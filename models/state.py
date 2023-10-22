@@ -21,6 +21,8 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """get a list of instances with state_id equals to current state
+        """
         var = models.storage.all()
         lista = []
         result = []
