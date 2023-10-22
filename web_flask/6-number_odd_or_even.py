@@ -28,31 +28,30 @@ def c(text):
 
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def python(text="is cool"):
+def p_is_cool(text="is cool"):
     """Displays 'Python' followed by the value of <text>"""
     text = text.replace("_", " ")
     return "Python {}".format(text)
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
-def number(n):
+def is_a_number(n):
     """Displays 'n is a number' only if n is an integer."""
     return f"{n} is a number"
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
-def numberTemplate(n):
+def templates(n):
     """Displays an HTML page only if <n> is an integer."""
     return render_template("5-number.html", n=n)
 
 
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
-def number_odd_or_even(n):
+def odd_or_even(n):
     """Displays an HTML page only if <n> is an integer.
-    return: H1 tag: 'Number: n is even|odd' inside the tag BODY
-    """
+    return:odd or even"""
     return render_template("6-number_odd_or_even.html", n=n)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port='5000')
