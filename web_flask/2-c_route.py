@@ -1,27 +1,26 @@
 #!/usr/bin/python3
-"""Flask web application: C is Fun"""
+""" Starts a Flash Web Application C is FUN"""
 from flask import Flask
-app = FLask(__name__)
+app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=false)
+@app.route('/', strict_slashes=False)
 def hello_hbnb():
-    """when /: display 'Hello HBNB!'"""
-    return “Hello HBNB!”
+    """ Prints a Message when / is called """
+    return 'Hello HBNB!'
 
 
-@app.route('/hbnb', strict_slashes=false)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """when /hbnb: display 'HBNB'"""
-    return "HBNB"
+    """ Prints a Message when /hbnb is called """
+    return 'HBNB'
 
 
-@app.route('/c/<text>', strict_slashes=false)
+@app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
-    """/c/<text>: display 'C ' followed text"""
+    """ Prints a Message when /c is called """
     return "C " + text.replace('_', ' ')
 
-
 if __name__ == "__main__":
-    """Main Fuction"""
+    """ Main Function """
     app.run(host='0.0.0.0', port=5000)
