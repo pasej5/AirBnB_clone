@@ -32,4 +32,4 @@ class State(BaseModel, Base):
         for elem in lista:
             if (elem.state_id == self.id):
                 result.append(elem)
-        return (result)
+        return (lista)
