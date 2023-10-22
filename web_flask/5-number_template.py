@@ -4,7 +4,8 @@ starts a Flask web application
 """
 
 from flask import Flask
-app = Flask(__name__, render_template=templates/5-number.html)
+from flask import render_template
+app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
