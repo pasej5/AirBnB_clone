@@ -21,6 +21,8 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """public getter method cities to return the list of City
+        """
         var = models.storage.all()
         lista = []
         result = []
@@ -32,4 +34,4 @@ class State(BaseModel, Base):
         for elem in lista:
             if (elem.state_id == self.id):
                 result.append(elem)
-        return (lista)
+        return (result)
