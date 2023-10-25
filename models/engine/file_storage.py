@@ -1,15 +1,5 @@
-#!/usr/bin/python3
-"""This is the file storage class for AirBnB"""
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 import shlex
-
 
 class FileStorage:
     """This class serializes instances to a JSON file and
@@ -22,9 +12,9 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """returns a dictionary
+        """Returns a dictionary
         Return:
-            returns a dictionary of __object
+            Returns a dictionary of __object
         """
         dic = {}
         if cls:
@@ -32,23 +22,23 @@ class FileStorage:
             for key in dictionary:
                 partition = key.replace('.', ' ')
                 partition = shlex.split(partition)
-                if (partition[0] == cls.__name__):
+                if partition[0] == cls.__name__:
                     dic[key] = self.__objects[key]
-            return (dic)
+            return dic
         else:
             return self.__objects
 
     def new(self, obj):
-        """sets __object to given obj
+        """Sets __object to the given obj
         Args:
-            obj: given object
+            obj: Given object
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             self.__objects[key] = obj
 
     def save(self):
-        """serialize the file path to JSON file path
+        """Serialize the file path to JSON file path
         """
         my_dict = {}
         for key, value in self.__objects.items():
@@ -57,16 +47,15 @@ class FileStorage:
             json.dump(my_dict, f)
 
     def reload(self):
-        """serialize the file path to JSON file path
+        """Deserialize the file path to JSON file path
         """
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                for key, value in (json.load(f)).items():
+                for key, value in json.load(f).items():
                     value = eval(value["__class__"])(**value)
                     self.__objects[key] = value
         except FileNotFoundError:
             pass
-
 
     def delete(self, obj=None):
         """
@@ -82,6 +71,8 @@ class FileStorage:
                 self.save()
 
     def close(self):
-        """ calls reload()
+        """Calls the remove() method on the private session attribute (self.__session)
+        to properly close the database session or a similar resource.
         """
-        self.reload()
+        if hasattr(self, '__session') and callable(getattr(self.__session, 'remove', None)):
+            self.__session.remove()
